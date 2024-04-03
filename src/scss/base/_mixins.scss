@@ -1,0 +1,280 @@
+@use 'base/variables' as v;
+
+/** Media Queries **/
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin telefonoPeque {
+    @media (max-width: v.$telefonoPeque) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+
+@mixin tabletMax {
+    @media (max-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+
+
+@mixin boton($bgColor, $colorTexto) {
+    background-color: $bgColor;
+    padding: 1.5rem 4rem;
+    color: $colorTexto;
+    font-size: 1.6rem;
+    display: inline-block;
+    font-weight: 700;
+    border: none;
+    transition-property: background-color;
+    transition-duration: .3s;
+    text-align: center;
+    display: block;
+    width: 100%;
+    border-radius: .5rem;
+    @include tablet {
+        width: auto;
+    }
+    &:hover {
+        background-color: darken( $bgColor, 10% );
+        cursor: pointer;
+    }
+}
+
+@mixin grid($columnas, $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+    grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin textoDegradado($color) {
+    background: linear-gradient(to right, $color 0%, lighten($color, 30%) 100%);
+    color: transparent;
+    background-clip: text;
+    text-align: center;
+    font-size: 7rem;
+
+    @include tablet {
+        font-size: 10rem;
+    }
+}
+
+@mixin darkMode() {
+    body,
+    html {
+        background-color: v.$grisOscuro;
+    }
+
+    .login .contenedor-iconos,
+    .confirmar .contenedor-iconos,
+    .crear .contenedor-iconos,
+    .mensaje .contenedor-iconos,
+    .olvide .contenedor-iconos,
+    .reestablecer .contenedor-iconos {
+        background-color: v.$grisOscuro;
+    }
+
+    .tagline,
+    .formulario label,
+    .login .acciones a,
+    .crear .acciones a,
+    .olvide .acciones a {
+        color: v.$blanco;
+    }
+
+    .descripcion-pagina,
+    .formulario .campo input,
+    .nombre-pagina {
+        color: darken(v.$grisClaro, 15%);
+    }
+
+    .formulario .campo input {
+        background-color: lighten( v.$grisOscuro, 15% );
+        &::placeholder {
+            color: darken(v.$grisClaro, 30%);
+        }
+    }
+
+    .alerta {
+        &.exito {
+            background-color: lighten(v.$verde2, 10%);
+            color: darken(v.$verde2, 15%);
+        }
+        &.error {
+            background-color: lighten(v.$rojo, 30%);
+            color: darken(v.$rojo, 15%);
+        }
+    }
+
+    .sidebar .sidebar-nav a.activo,
+    .sidebar .sidebar-nav a:hover {
+        background-color: darken(v.$amarillo, 5%);
+        color: v.$blanco;
+    }
+
+    .sidebar.mostrar .cerrar-sesion-mobile .cerrar-sesion {
+        background-color: v.$cyan;
+        color: v.$blanco;
+        &:hover {
+            background-color: darken(v.$cyan, 10%);
+        }
+    }
+
+    .sidebar{
+        @include tablet {
+            background-color: darken(v.$verde2, 27%);
+
+            .sidebar-nav a {
+                &.activo,
+                &.hover {
+                    background-color: darken(v.$amarillo, 5%);
+                }
+            }
+        }
+    }
+
+    .barra-mobile,
+    .sidebar.mostrar {
+        background-color: darken(v.$verde2, 27%);
+    }
+
+    .barra {
+        background-color: lighten( v.$grisOscuro, 10% );
+
+        p {
+            color: v.$grisClaro;
+
+            span {
+                color: darken(v.$amarillo, 5%);
+            }
+        }
+
+        .cerrar-sesion {
+            background-color: v.$cyan;
+            color: v.$blanco;
+            &:hover {
+                background-color: darken(v.$cyan, 10%);
+            }
+        }
+    }
+
+    .filtros {
+        background-color: lighten( v.$grisOscuro, 10% );
+
+        h2 {
+            color: v.$blanco;
+        }
+
+        .campo {
+            
+            
+            input {
+                color: v.$grisClaro;
+                &::placeholder {
+                    color: darken(v.$grisClaro, 30%);
+                }
+            }
+            
+        }
+
+        input[type=radio] {
+            accent-color: v.$amarillo; 
+        }
+    }
+        
+    .dashboard {
+        background-color: v.$grisOscuro;
+
+        .enlace {
+            color: v.$grisClaro;
+            &:hover {
+                color: v.$verde2;
+            }
+        }
+
+        .formulario {
+            input:not([type=submit]) {
+                background-color: lighten( v.$grisOscuro, 15% );
+                color: v.$grisClaro;
+
+                &::placeholder {
+                    color: darken(v.$grisClaro, 30%);
+                }
+            }
+
+            input[type=submit] {
+                background-color: darken(v.$amarillo, 5%);
+                color: v.$blanco;
+                &:hover {
+                    background-color: darken(v.$amarillo, 10%)
+                }
+            }
+        }
+    }
+
+    .listado-proyectos .proyecto {
+        background-color: darken(v.$amarillo, 5%);
+        &:hover {
+            background-color: darken(v.$amarillo, 10%);
+        }
+
+        a {
+            color: v.$blanco;
+        }
+    }
+
+    .tarea .opciones {
+        .pendiente {
+            background-color: darken(v.$amarillo, 5%);
+        }
+
+        .completa {
+            background-color: darken(v.$azul, 27%);
+        }
+    }
+
+    .listado-tareas .tarea {
+        border-radius: .5rem;
+        background-color: lighten(v.$grisOscuro, 10%);
+        border: none;
+
+        p {
+            color: darken(v.$grisClaro, 15%);
+        }
+    }
+
+    .formulario.nueva-tarea {
+        background-color: lighten(v.$grisOscuro, 10%);
+
+        legend {
+            color: darken(v.$grisClaro, 15%);
+        }
+
+        .cerrar-modal {
+            background-color: darken(v.$amarillo, 5%);
+        }
+    }
+
+    .contenedor-iconos {
+        
+        background-color: darken(v.$verde2, 29%);
+        .icono-light {
+            opacity: 0.5;
+        }
+    
+        .icono-dark {
+            opacity: 1;
+        }
+    }
+}

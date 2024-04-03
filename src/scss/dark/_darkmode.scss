@@ -1,0 +1,14 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: v.$grisOscuro;
+        @include m.darkMode();
+    }
+}
+
+.modo-Oscuro {
+    background-color: v.$grisOscuro;
+    @include m.darkMode();
+}
